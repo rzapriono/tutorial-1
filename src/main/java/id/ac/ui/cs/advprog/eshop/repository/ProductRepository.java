@@ -24,19 +24,16 @@ public class ProductRepository {
 
     public Product edit(Product originalProduct, Product editedProduct) {
         originalProduct.setProductName(editedProduct.getProductName());
-        originalProduct.setProductQuantity(originalProduct.getProductQuantity());
+        originalProduct.setProductQuantity(editedProduct.getProductQuantity());
         return editedProduct;
     }
 
     public Product findProduct(String productId) {
-        Iterator<Product> productIterator = productData.iterator();
-
-        while(productIterator.hasNext()){
-            Product product = productIterator.next();
+        for (Product product : productData) {
             if (product.getProductId().equals(productId)) {
                 return product;
             }
         }
-        throw new IllegalArgumentException("Product doesn't exit");
+        throw new IllegalArgumentException("Product doesn't exist");
     }
 }
