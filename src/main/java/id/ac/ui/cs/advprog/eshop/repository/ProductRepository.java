@@ -29,12 +29,8 @@ public class ProductRepository {
     }
 
     public Product findProduct(String productId) {
-        System.out.println("param: " + productId);
         for (Product product : productData) {
-            System.out.println("deleted id: " + product.getProductId());
-            System.out.println(product.getProductId().equals(productId));
             if (product.getProductId().equals(productId)) {
-                System.out.println("tes");
                 return product;
             }
         }
