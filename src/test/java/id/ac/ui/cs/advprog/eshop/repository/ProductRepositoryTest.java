@@ -63,4 +63,58 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEditExistingProduct() {
+        Product product = new Product();
+        product.setProductId("db27ac37-4a86-40be-978a-e9d97fe4f089");
+        product.setProductName("Doritos Nacho Cheese");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product editedProduct = productRepository.findProduct(product.getProductId());
+        editedProduct.setProductId("db27ac37-4a86-40be-978a-e9d97fe4f089");
+        editedProduct.setProductName("Doritos Barbeque");
+        product.setProductQuantity(50);
+
+        Product result = productRepository.edit(editedProduct);
+        assertEquals(editedProduct.getProductId(), result.getProductId());
+        assertEquals(editedProduct.getProductName(), result.getProductName());
+        assertEquals(editedProduct.getProductQuantity(), result.getProductQuantity());
+    }
+
+    @Test
+    void testEditNonExistingProduct() {
+        Product product = new Product();
+        product.setProductId("db27ac37-4a86-40be-978a-e9d97fe4f089");
+        product.setProductName("McFlurry Cookies and Cream");
+        product.setProductQuantity(50);
+
+        assertThrows(IllegalArgumentException.class, () -> productRepository.edit(product));
+    }
+
+    @Test
+    void testDeleteExistingProduct() {
+        Product product = new Product();
+        product.setProductId("db27ac37-4a86-40be-978a-e9d97fe4f089");
+        product.setProductName("McFlurry Cookies and Cream");
+        product.setProductQuantity(50);
+        productRepository.create(product);
+
+        productRepository.delete(product.getProductId());
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testDeleteNonExistingProduct() {
+        Product product = new Product();
+        product.setProductId("db27ac37-4a86-40be-978a-e9d97fe4f089");
+        product.setProductName("McFlurry Cookies and Cream");
+        product.setProductQuantity(50);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+        assertThrows(IllegalArgumentException.class, () -> productRepository.delete(product.getProductId()));
+    }
 }
