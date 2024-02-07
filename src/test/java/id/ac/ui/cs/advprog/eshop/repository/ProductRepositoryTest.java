@@ -92,4 +92,29 @@ class ProductRepositoryTest {
 
         assertThrows(IllegalArgumentException.class, () -> productRepository.edit(product));
     }
+
+    @Test
+    void testDeleteExistingProduct() {
+        Product product = new Product();
+        product.setProductId("db27ac37-4a86-40be-978a-e9d97fe4f089");
+        product.setProductName("McFlurry Cookies and Cream");
+        product.setProductQuantity(50);
+        productRepository.create(product);
+
+        productRepository.delete(product.getProductId());
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testDeleteNonExistingProduct() {
+        Product product = new Product();
+        product.setProductId("db27ac37-4a86-40be-978a-e9d97fe4f089");
+        product.setProductName("McFlurry Cookies and Cream");
+        product.setProductQuantity(50);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+        assertThrows(IllegalArgumentException.class, () -> productRepository.delete(product.getProductId()));
+    }
 }
