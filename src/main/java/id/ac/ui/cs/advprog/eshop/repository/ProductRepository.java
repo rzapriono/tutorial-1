@@ -22,9 +22,10 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Product edit(Product originalProduct, Product editedProduct) {
-        originalProduct.setProductName(editedProduct.getProductName());
-        originalProduct.setProductQuantity(editedProduct.getProductQuantity());
+    public Product edit(Product editedProduct) {
+        Product originalProduct = findProduct(editedProduct.getProductId());
+        int indexOfProduct = productData.indexOf(originalProduct);
+        productData.set(indexOfProduct, editedProduct);
         return editedProduct;
     }
 
