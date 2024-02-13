@@ -38,8 +38,9 @@ public class ProductRepository {
         throw new IllegalArgumentException("Product doesn't exist");
     }
 
-    public void delete(String productId) {
+    public Product delete(String productId) {
         Product deletedProduct = findProduct(productId);
         productData.remove(deletedProduct);
+        return deletedProduct;
     }
 }
