@@ -1,6 +1,7 @@
 plugins {
 	java
 	jacoco
+	id("org.sonarqube") version "4.4.1.3373"
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
 }
@@ -10,6 +11,9 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
 }
 
 configurations {
@@ -20,6 +24,15 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "rzapriono_tutorial-1")
+		property("sonar.organization", "rzapriono")
+		property("sonar.host.url", "https://sonarcloud.io")
+		property ("sonar.login", "89ae7d2a67219f0f7d1d3b6199fee2d844554a8f")
+	}
 }
 
 val seleniumJavaVersion = "4.14.1"
@@ -74,4 +87,8 @@ tasks.test {
 
 tasks.jacocoTestReport {
 	dependsOn(tasks.test)
+	reports {
+		xml.required.set(true)
+		csv.required.set(true)
+	}
 }
