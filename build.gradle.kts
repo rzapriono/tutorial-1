@@ -11,6 +11,9 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
 }
 
 configurations {
@@ -28,6 +31,7 @@ sonar {
 		property("sonar.projectKey", "rzapriono_tutorial-1")
 		property("sonar.organization", "rzapriono")
 		property("sonar.host.url", "https://sonarcloud.io")
+		property ("sonar.login", "89ae7d2a67219f0f7d1d3b6199fee2d844554a8f")
 	}
 }
 
@@ -83,4 +87,8 @@ tasks.test {
 
 tasks.jacocoTestReport {
 	dependsOn(tasks.test)
+	reports {
+		xml.required.set(true)
+		csv.required.set(true)
+	}
 }
