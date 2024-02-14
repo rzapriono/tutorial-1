@@ -40,7 +40,7 @@ public class ProductRepository {
             }
         }
 
-        if (found == true){
+        if (found){
             return foundProduct;
         } else {
             throw new IllegalArgumentException("Product doesn't exist");
