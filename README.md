@@ -39,7 +39,9 @@ Code coverage 100% tidak menjamin bahwa kode tidak memiliki bug atau error, kare
 # Tutorial 2
 
 ### Reflection
-1. Code quality issues yang terdeteksi pada sonarcloud adalah "unused private field". Issue tersebut muncul pada ketiga field productId, productName, dan productQuantity di model Product. Namun, menurut saya dan seharusnya, hal tersebut bukan merupakan sebuah issue karena field tersebut diakses dengan menggunakan getter dan setter. Saat ini, saya telah mark ketiga issue tersebut sebagai false positive. Selain dari ketiga issue tersebut, tidak ada issue lain yang terdeteksi.
+1. Code quality issues:
+- **unused private field** : muncul pada ketiga field productId, productName, dan productQuantity di model Product. Namun, menurut saya, hal tersebut seharusnya bukan merupakan sebuah issue karena field tersebut diakses dengan menggunakan getter dan setter. Saat ini, saya telah mark ketiga issue tersebut sebagai false positive.
+- Menghilangkan modifier public pada class test
 
 
 2. Menurut saya, implementasi github workflows pada program saya sudah menerapkan CI/CD. CI/CD memungkinkan terjadinya testing program dan deployment secara otomatis. Dengan menggunakan github workflows, program saya bisa menjalani testing setiap kali terjadi push di suatu branch. Dengan demikian, setiap perubahan dapat dipastikan tidak mengganggu fungsionalitas program dan coding standart yang telah diterapkan. Selain itu, deployment menggunakan `Koyeb` sebagai PaaS juga telah menerapkan CI/CD dimana terjadi proses deployment otomatis saat ada push atau pull request dari suatu branch.
