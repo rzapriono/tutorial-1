@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(controllers = ProductController.class)
-public class ProductControllerTest {
+class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
@@ -70,21 +70,21 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testListProductPage() throws Exception{
+    void testListProductPage() throws Exception{
         mockMvc.perform(get("/product/list"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Product's List")));
     }
 
     @Test
-    public void testCreateProductPage() throws Exception{
+    void testCreateProductPage() throws Exception{
         mockMvc.perform(get("/product/create"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Create New Product")));
     }
 
     @Test
-    public void testCreateProductPost() throws Exception{
+    void testCreateProductPost() throws Exception{
         Product product = sampleProduct();
         when(productService.create(product)).thenReturn(mockAddProduct(product));
         mockMvc.perform(post("/product/create").flashAttr("product",product))
@@ -98,7 +98,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testEditProductPage() throws Exception{
+    void testEditProductPage() throws Exception{
         Product product = sampleProduct();
 
         when(productService.findProduct(product.getProductId())).thenReturn(product);
@@ -108,7 +108,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testEditProductPost() throws Exception{
+    void testEditProductPost() throws Exception{
         Product product = sampleProduct();
         when(productService.create(product)).thenReturn(mockAddProduct(product));
         mockMvc.perform(post("/product/create").flashAttr("product", product))
@@ -132,7 +132,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testDeleteProductPost() throws Exception{
+    void testDeleteProductPost() throws Exception{
         Product product = sampleProduct();
         doReturn(product).when(productService).findProduct(product.getProductId());
 
