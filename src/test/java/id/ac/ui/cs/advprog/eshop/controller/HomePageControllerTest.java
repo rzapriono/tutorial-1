@@ -18,7 +18,7 @@ class HomePageControllerTest {
     void setHomePageControllerTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("homePage"))
+                .andExpect(MockMvcResultMatchers.view().name("HomePage"))
                 .andExpect(MockMvcResultMatchers.content().string(containsString("ADV Shop")));
     }
 }
