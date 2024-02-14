@@ -30,12 +30,21 @@ public class ProductRepository {
     }
 
     public Product findProduct(String productId) {
+        Product foundProduct = new Product();
+        boolean found = false;
+
         for (Product product : productData) {
             if (product.getProductId().equals(productId)) {
-                return product;
+                found = true;
+                foundProduct = product;
             }
         }
-        throw new IllegalArgumentException("Product doesn't exist");
+
+        if (found == true){
+            return foundProduct;
+        } else {
+            throw new IllegalArgumentException("Product doesn't exist");
+        }
     }
 
     public Product delete(String productId) {
