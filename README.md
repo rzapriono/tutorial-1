@@ -6,6 +6,8 @@ __AdPro B - KVN__</br>
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rzapriono_tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rzapriono_tutorial-1)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rzapriono_tutorial-1&metric=coverage)](https://sonarcloud.io/summary/new_code?id=rzapriono_tutorial-1)
 
+[Deployed App](https://tutorial-adpro-rzapriono.koyeb.app/)
+
 ## Arsip Reflection
 <details>
 <summary>Tutorial 1</summary>
