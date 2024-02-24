@@ -62,24 +62,24 @@ Beberapa workflows yang sudah diterapkan untuk CI/CD adalah `ci.yml` untuk testi
 ### SOLID Principle
 - Single Responsibility Principle (SRP)
 
-SRP adalah prinsip dimana setiap class memiliki satu tanggung jawab. Saya menerapkannya dengan memisahkan ProductController dan CarController yang awalnya terdapat pada 1 file ProductController.java menjadi berada di 2 file berbeda, dengan menambahkan file CarController.java dan menghilangkan hubungan inheritance ProductController dengan CarController. Hal yang sama juga diterapkan dengan pemisahan HomepageController, ProductController, dan CarController yang masing-masing bertanggung jawab untuk satu hal saja. Selain itu, saya mengubah function update pada CarRepository yang tadinya tak hanya untuk mengupdate object car melainkan juga mencari car yang ingin diupdate menjadi hanya memanggil function findById untuk mencarinya.
+SRP adalah prinsip dimana setiap class memiliki satu tanggung jawab. Saya menerapkannya dengan memisahkan `ProductController` dan `CarController` yang awalnya terdapat pada 1 file `ProductController.java` menjadi berada di 2 file berbeda, dengan menambahkan file `CarController.java` dan menghilangkan hubungan inheritance antar keduanya. Hal yang sama juga diterapkan dengan pemisahan `HomepageController`, `ProductController`, dan `CarController` yang masing-masing bertanggung jawab untuk satu hal saja. Selain itu, saya mengubah function `Update` pada `CarRepository` yang tadinya tak hanya untuk mengupdate object car melainkan juga mencari car yang ingin diupdate menjadi hanya memanggil function `findById` untuk mencarinya.
 
 - Interface Segregation Principle (ISP)
 
-ISP adalah prinsip yang membagi suatu interface yang besar dan complex menjadi beberapa interface yang lebih kecil dan spesifik. Saya menerapkannya dengan memisahkan interface ProductService dengan CarService karena masing-masing memiliki behaviour yang berbeda dan spesifik untuk Car dan Product. Hal ini diterapkan juga agar interface yang dibuat tidak menjadi suatu interface yang terlalu complex seperti halnya jika kedua interface tersebut disatukan.
+ISP adalah prinsip yang membagi suatu interface yang besar dan complex menjadi beberapa interface yang lebih kecil dan spesifik. Saya menerapkannya dengan memisahkan interface `ProductService` dengan `CarService` karena masing-masing memiliki behaviour yang berbeda dan spesifik untuk Car dan Product. Hal ini diterapkan juga agar interface yang dibuat tidak menjadi suatu interface yang terlalu complex seperti halnya jika kedua interface tersebut disatukan.
 
 - Dependency Inversion Principle (DIP)
 
-DIP adalah prinsip yang mengutamakan agar suatu class bergantung pada abstract class atau interface, bukan concrete implementation. Saya menerapkannya dengan mengubah dependency pada CarController yang tadinya bergantung pada concrete class CarServiceImpl menjadi interface CarService. Hal yang sama juga sudah berlaku untuk ProductController yang bergantung pada interface ProductService.
+DIP adalah prinsip yang mengutamakan agar suatu class bergantung pada abstract class atau interface, bukan concrete implementation. Saya menerapkannya dengan mengubah dependency pada `CarController` yang tadinya bergantung pada concrete class `CarServiceImpl` menjadi interface `CarService`. Hal yang sama juga sudah berlaku untuk `ProductController` yang bergantung pada interface `ProductService`.
 
 ### Advantages
 Keuntungan jika menerapkan SOLID principles:
-- Kode menjadi lebih terstruktur, mudah dibaca, dan mudah dipahami baik untuk orang lain maupun saya sendiri. Misalnya, dengan memisahkan interface CarService dengan ProductService, maka akan menjadi 2 interface yang lebih kecil dan mudah untuk dimengerti.
-- Lebih mudah dalam melakukan code maintenance. Misalnya, hanya perlu mengubah implementasi dari CarService tanpa perlu memodifikasi CarController.
-- Kode menjadi lebih reusable dan fleksibel. Misalnya, dengan memisahkan function findById, maka pada function Update dan Delete bisa menggunakan function tersebut.
+- Kode menjadi lebih terstruktur, mudah dibaca, dan mudah dipahami baik untuk orang lain maupun saya sendiri. Misalnya, dengan memisahkan interface `CarService` dengan `ProductService`, maka akan menjadi 2 interface yang lebih kecil dan mudah untuk dimengerti.
+- Lebih mudah dalam melakukan code maintenance. Misalnya, hanya perlu mengubah implementasi dari `CarService` tanpa perlu memodifikasi `CarController`.
+- Kode menjadi lebih reusable dan fleksibel. Misalnya, dengan memisahkan function `findById`, maka pada function `Update` dan `Delete` bisa menggunakan function tersebut.
 
 ### Disadvantages
 Kerugian jika tidak menerapkan SOLID principles:
-- Kode menjadi repetitif. Misalnya, function update awalnya juga melakukan looping untuk mencari car, padahal sebenarnya hanya perlu memanggil findById karena kode tersebut juga melakukan hal yang sama.
+- Kode menjadi repetitif. Misalnya, function `Update` awalnya juga melakukan looping untuk mencari car, padahal sebenarnya hanya perlu memanggil `findById` karena kode tersebut juga melakukan hal yang sama.
 - Sulit untuk melakukan maintenance pada kode. Misalnya, jika ingin mengubah kode atau menambah fitur, maka perlu mempertimbangkan apakah akan mempengaruhi kode lain.
-- Perubahan pada suatu bagian kode akan berdampak ke banyak kode lain. Misalnya, jika CarController bergantung pada concrete class CarServiceImpl bukan interface CarService, maka jika terdapat perubahan pada CarServiceImpl saya juga perlu memodifikasi CarController.
+- Perubahan pada suatu bagian kode akan berdampak ke banyak kode lain. Misalnya, jika `CarController` bergantung pada concrete class `CarServiceImpl` bukan interface `CarService`, maka jika terdapat perubahan pada `CarServiceImpl` saya juga perlu memodifikasi `CarController`.
