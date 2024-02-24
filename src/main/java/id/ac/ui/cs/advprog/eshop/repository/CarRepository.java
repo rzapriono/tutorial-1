@@ -37,13 +37,14 @@ public class CarRepository {
 
     public Car update(String id, Car updatedCar) {
         Car car = findById(id);
-
-        // Update the existing car with the new information
-        car.setCarName(updatedCar.getCarName());
-        car.setCarColor(updatedCar.getCarColor());
-        car.setCarQuantity(updatedCar.getCarQuantity());
-
-        return car;
+        if (car != null) {
+            // Update the existing car with the new information
+            car.setCarName(updatedCar.getCarName());
+            car.setCarColor(updatedCar.getCarColor());
+            car.setCarQuantity(updatedCar.getCarQuantity());
+            return car;
+        }
+        return null; // Handle the case where the car is not found
     }
 
     public void delete(String id) {
