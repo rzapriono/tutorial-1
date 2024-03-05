@@ -47,7 +47,7 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentVoucherPendingStatus() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 "", order, paymentData);
@@ -61,7 +61,7 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentVoucherSuccessStatus() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 "", order, paymentData, PaymentStatus.SUCCESS.getValue());
@@ -75,7 +75,7 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentVoucherRejectedStatus() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 "", order, paymentData, PaymentStatus.REJECTED.getValue());
@@ -89,7 +89,7 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentVoucherInvalidStatus() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         assertThrows(IllegalArgumentException.class, () -> {
             new Payment("af47141e-dae3-11ee-a506-0242ac120002",
@@ -100,7 +100,7 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentVoucherNullStatus() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         assertThrows(IllegalArgumentException.class, () -> {
             new Payment("af47141e-dae3-11ee-a506-0242ac120002",
@@ -180,7 +180,7 @@ class PaymentTest {
 
     @Test
     void testSetStatusPaymentVoucherToSuccess() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 "", order, paymentData);
@@ -191,7 +191,7 @@ class PaymentTest {
 
     @Test
     void testSetStatusPaymentVoucherToRejected() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 "", order, paymentData);
@@ -202,7 +202,7 @@ class PaymentTest {
 
     @Test
     void testSetStatusPaymentVoucherToInvalidStatus() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 "", order, paymentData);
@@ -214,7 +214,7 @@ class PaymentTest {
 
     @Test
     void testSetStatusPaymentVoucherToNullStatus() {
-        paymentData.put("voucherCode", "ESHOPRZK26");
+        paymentData.put("voucherCode", "ESHOP2611RZK2138");
 
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 "", order, paymentData);
