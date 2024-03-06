@@ -53,7 +53,7 @@ class PaymentTest {
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData);
         assertSame(payment.getOrder(), order);
-        assertNull(payment.getPaymentData());
+        assertSame(paymentData, payment.getPaymentData());
         assertEquals("af47141e-dae3-11ee-a506-0242ac120002", payment.getId());
         assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
         assertEquals(PaymentStatus.PENDING.getValue(), payment.getStatus());
@@ -67,7 +67,7 @@ class PaymentTest {
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
         assertSame(payment.getOrder(), order);
-        assertNull(payment.getPaymentData());
+        assertSame(paymentData, payment.getPaymentData());
         assertEquals("af47141e-dae3-11ee-a506-0242ac120002", payment.getId());
         assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
         assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
@@ -81,7 +81,7 @@ class PaymentTest {
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData, PaymentStatus.REJECTED.getValue());
         assertSame(payment.getOrder(), order);
-        assertNull(payment.getPaymentData());
+        assertSame(paymentData, payment.getPaymentData());
         assertEquals("af47141e-dae3-11ee-a506-0242ac120002", payment.getId());
         assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
@@ -118,7 +118,7 @@ class PaymentTest {
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData);
         assertSame(payment.getOrder(), order);
-        assertNull(payment.getPaymentData());
+        assertSame(paymentData, payment.getPaymentData());
         assertEquals("af47141e-dae3-11ee-a506-0242ac120002", payment.getId());
         assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
         assertEquals(PaymentStatus.PENDING.getValue(), payment.getStatus());
@@ -133,7 +133,7 @@ class PaymentTest {
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
         assertSame(payment.getOrder(), order);
-        assertNull(payment.getPaymentData());
+        assertSame(paymentData, payment.getPaymentData());
         assertEquals("af47141e-dae3-11ee-a506-0242ac120002", payment.getId());
         assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
         assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
@@ -148,7 +148,7 @@ class PaymentTest {
         Payment payment = new Payment("af47141e-dae3-11ee-a506-0242ac120002",
                 PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData, PaymentStatus.REJECTED.getValue());
         assertSame(payment.getOrder(), order);
-        assertNull(payment.getPaymentData());
+        assertSame(paymentData, payment.getPaymentData());
         assertEquals("af47141e-dae3-11ee-a506-0242ac120002", payment.getId());
         assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
