@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -57,13 +58,13 @@ class PaymentServiceTest {
 
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP2611RZK2138");
-        Payment payment1 = new Payment("3fdfd2e0-db98-11ee-a506-0242ac120002", "VOUCHER_CODE", orders.get(0), paymentData, PaymentStatus.PENDING.getValue());
+        Payment payment1 = new Payment("3fdfd2e0-db98-11ee-a506-0242ac120002", PaymentMethod.VOUCHER_CODE.getValue(), orders.get(0), paymentData, PaymentStatus.PENDING.getValue());
         payments.add(payment1);
 
         paymentData = new HashMap<>();
         paymentData.put("address", "Akses UI");
         paymentData.put("deliveryFee", "9000");
-        Payment payment2 = new Payment("645a22f6-db98-11ee-a506-0242ac120002", "CASH_ON_DELIVERY", orders.get(0), paymentData, PaymentStatus.PENDING.getValue());
+        Payment payment2 = new Payment("645a22f6-db98-11ee-a506-0242ac120002", PaymentMethod.CASH_ON_DELIVERY.getValue(), orders.get(0), paymentData, PaymentStatus.PENDING.getValue());
         payments.add(payment2);
     }
 
@@ -71,32 +72,32 @@ class PaymentServiceTest {
     void testAddPayment() {
         Payment payment1 = payments.get(0);
         doReturn(payment1).when(paymentRepository).save(any(Payment.class));
-        payment1 = paymentService.addPayment(payment1.getOrder(), "VOUCHER", payment1.getPaymentData());
+        payment1 = paymentService.addPayment(payment1.getOrder(), PaymentMethod.VOUCHER_CODE.getValue(), payment1.getPaymentData());
 
         Payment payment2 = payments.get(1);
         doReturn(payment2).when(paymentRepository).save(any(Payment.class));
-        payment2 = paymentService.addPayment(payment2.getOrder(), "BANK", payment2.getPaymentData());
+        payment2 = paymentService.addPayment(payment2.getOrder(), PaymentMethod.CASH_ON_DELIVERY.getValue(), payment2.getPaymentData());
 
         doReturn(payment1).when(paymentRepository).findById(payment1.getId());
         Payment findResult = paymentService.getPayment(payment1.getId());
 
         assertEquals(payment1.getId(),findResult.getId() );
-        assertEquals(payment1.getMethod(), findResult.getMethod() );
-        assertEquals(payment1.getStatus(), findResult.getStatus() );
+        assertEquals(payment1.getMethod(), findResult.getMethod());
+        assertEquals(payment1.getStatus(), findResult.getStatus());
 
         doReturn(payment2).when(paymentRepository).findById(payment2.getId());
         findResult = paymentService.getPayment(payment2.getId());
 
         assertEquals(payment2.getId(),findResult.getId() );
-        assertEquals(payment2.getMethod(), findResult.getMethod() );
-        assertEquals(payment2.getStatus(), findResult.getStatus() );
+        assertEquals(payment2.getMethod(), findResult.getMethod());
+        assertEquals(payment2.getStatus(), findResult.getStatus());
     }
 
     @Test
     void testSetStatusSuccessful() {
         Map<String, String> paymentData = new HashMap<>();
-        paymentData.put("voucherCode","ESHOP697A71B273C");
-        Payment payment1 = new Payment("05b6687d-763a-4f29-9e85-144f31337282", "VOUCHER", orders.get(0), paymentData);
+        paymentData.put("voucherCode","ESHOP2611RZK2138");
+        Payment payment1 = new Payment("ec38fb5c-dba7-11ee-a506-0242ac120002", PaymentMethod.VOUCHER_CODE.getValue(), orders.get(0), paymentData);
 
         assertEquals(PaymentStatus.PENDING.getValue(),payment1.getStatus());
         paymentService.setStatus(payment1, PaymentStatus.SUCCESS.getValue());
@@ -107,9 +108,9 @@ class PaymentServiceTest {
 
     @Test
     void testUpdateOrderStatusWhenPaymentSuccess() {
-        Order order = new Order("d84e86bd-a0b3-4c64-b5f6-3c492c1468d3", products, 1708560000L, "Bambang Sugeni");
+        Order order = new Order("e03566e2-dba7-11ee-a506-0242ac120002", products, 1708560000L, "Salsabila Sudrajat");
         Map<String, String> paymentData = new HashMap<>();
-        Payment payment = new Payment(UUID.randomUUID().toString(), "BANK", order, paymentData, PaymentStatus.PENDING.getValue());
+        Payment payment = new Payment(UUID.randomUUID().toString(), PaymentMethod.CASH_ON_DELIVERY.getValue(), order, paymentData, PaymentStatus.PENDING.getValue());
 
         paymentService.setStatus(payment, PaymentStatus.SUCCESS.getValue());
         assertEquals(OrderStatus.SUCCESS.getValue(), payment.getOrder().getStatus());
@@ -124,9 +125,9 @@ class PaymentServiceTest {
 
     @Test
     void testUpdateOrderStatusWhenPaymentRejected() {
-        Order order = new Order("3b4a64cc-61c1-44e9-b351-3f08759de529", products, 1708560000L, "Bambang Sugeni");
+        Order order = new Order("e03566e2-dba7-11ee-a506-0242ac120002", products, 1708560000L, "Salsabila Sudrajat");
         Map<String, String> paymentData = new HashMap<>();
-        Payment payment = new Payment(UUID.randomUUID().toString(), "BANK", order, paymentData, PaymentStatus.PENDING.getValue());
+        Payment payment = new Payment(UUID.randomUUID().toString(), PaymentMethod.CASH_ON_DELIVERY.getValue(), order, paymentData, PaymentStatus.PENDING.getValue());
 
         paymentService.setStatus(payment, PaymentStatus.REJECTED.getValue());
         assertEquals(OrderStatus.FAILED.getValue(), payment.getOrder().getStatus());
@@ -139,7 +140,7 @@ class PaymentServiceTest {
 
         Payment paymentFound = paymentService.getPayment(payment.getId());
         assertEquals(payment.getId(), paymentFound.getId());
-        assertEquals("VOUCHER",paymentFound.getMethod());
+        assertEquals(PaymentMethod.VOUCHER_CODE.getValue(),paymentFound.getMethod());
         assertEquals(payment.getStatus(), paymentFound.getStatus());
     }
 
