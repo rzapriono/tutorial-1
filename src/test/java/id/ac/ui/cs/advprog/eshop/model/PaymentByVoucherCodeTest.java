@@ -50,7 +50,7 @@ class PaymentByVoucherCodeCodeTest {
         Map<String, String> paymentDataVoucher = new HashMap<>();
         paymentDataVoucher.put("voucherCode", "ESHOP2611RZK2138");
 
-        Payment payment = new PaymentByVoucherCodeCode("d5104f2a-dbac-11ee-a506-0242ac120002", orders.get(1), "VOUCHER_CODE", paymentDataVoucher);
+        Payment payment = new PaymentByVoucherCode("d5104f2a-dbac-11ee-a506-0242ac120002", orders.get(1), "VOUCHER_CODE", paymentDataVoucher);
         assertSame(orders.get(1), payment.getOrder());
         assertEquals("d5104f2a-dbac-11ee-a506-0242ac120002", payment.getId());
         assertEquals("VOUCHER_CODE", payment.getMethod());
