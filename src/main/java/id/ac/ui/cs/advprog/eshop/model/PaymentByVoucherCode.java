@@ -13,6 +13,22 @@ public class PaymentByVoucherCode extends Payment {
 
     @Override
     protected void setPaymentData(Map<String, String> paymentData) {
+        int numericsCount = 0;
 
+        if (paymentData.get("voucherCode").length() != 16) {
+            throw new IllegalArgumentException();
+        }
+
+        for (int i = 0; i < 16; i++) {
+            if (Character.isDigit(paymentData.get("voucherCode").charAt(i))) {
+                numericsCount += 1;
+            }
+        }
+
+        if (!paymentData.get("voucherCode").startsWith("ESHOP") || numericsCount != 8) {
+            throw new IllegalArgumentException();
+        }
+
+        this.paymentData = paymentData;
     }
 }
