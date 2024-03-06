@@ -56,6 +56,9 @@ Code coverage 100% tidak menjamin bahwa kode tidak memiliki bug atau error, kare
 Beberapa workflows yang sudah diterapkan untuk CI/CD adalah `ci.yml` untuk testing otomatis dan `scorecard.yml` serta `sonarcloud.yml` untuk pengecekan code seperti code coverage, bug, dll.
 </details>
 
+<details>
+<summary>Tutorial 3</summary>
+
 ## Tutorial 3
 
 ### Reflection
@@ -83,3 +86,13 @@ Kerugian jika tidak menerapkan SOLID principles:
 - Kode menjadi repetitif. Misalnya, function `Update` awalnya juga melakukan looping untuk mencari car, padahal sebenarnya hanya perlu memanggil `findById` karena kode tersebut juga melakukan hal yang sama.
 - Sulit untuk melakukan maintenance pada kode. Misalnya, jika ingin mengubah kode atau menambah fitur, maka perlu mempertimbangkan apakah akan mempengaruhi kode lain.
 - Perubahan pada suatu bagian kode akan berdampak ke banyak kode lain. Misalnya, jika `CarController` bergantung pada concrete class `CarServiceImpl` bukan interface `CarService`, maka jika terdapat perubahan pada `CarServiceImpl` saya juga perlu memodifikasi `CarController`.
+
+</details>
+
+## Tutorial 4
+
+### Reflection
+1. Setelah mengerjakan tutorial pada modul ini, saya merasa bahwa prosedur TDD sangat useful karena memberikan kontribusi positif terhadap kualitas kode yang saya hasilkan. Pembagian proses development menjadi tiga bagian (RED, GREEN, REFACTOR) membuat alur penulisan program menjadi lebih terarah dan terstruktur. Dengan menulis tes sebelum membuat implementasi, saya harus merinci behavior dan juga merancang bagaimana suatu class akan diimplementasikan terlebih dahulu. Hal ini nantinya akan memudahkan saya dalam membuat implementasi dari class tersebut. Namun, saya juga merasa prosedur TDD memakan waktu yang banyak karena cukup sulit dilakukan dan membingungkan karena ada keharusan dalam membuat test terlebih dahulu padahal belum ada implementasi yang pasti.
+
+
+2. Unit test yang sudah saya buat pada tutorial ini sudah berhasil mengikuti F.I.R.S.T principle. Fast karena unit test bisa dijalankan dengan cepat sehingga saya bisa langsung mendapat feedback tanpa ada gangguan pada alur pengerjaan. Selanjutnya, Isolated/Independent karena test bersifat independen dan difokuskan pada suatu method, sehingga tidak mempengaruhi test lainnya dan juga source codenya dengan adanya penggunaan mock. Test juga Repeatable karena unit tests yang dibuat telah dirancang untuk dapat diulang. Kemudian, dengan penggunaan assertion untuk mengecek output dari program, maka masalah pada kode akan mudah terlihat berdasarkan hasil dari setiap assertion maupun keseluruhan assertion pada test yang dibuat, sehingga test bersifat Self-Validating. Terakhir, test telah memenuhi Thorough/Timely karena telah mengecek semua kemungkinan dan mencakup happy case maupun unhappy case.
